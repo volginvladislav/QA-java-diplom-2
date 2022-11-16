@@ -48,33 +48,36 @@ public class CreateUserTest {
     @DisplayName("Регистрация нового пользователя без поля email")
     public void checkCreateUserWithoutEmailField(){
         UserRequest userRequest = UserRequestGenerator.getRandomUserRequestWithoutEmailField();
-        userSteps.create(userRequest)
+        response = userSteps.create(userRequest)
                 .assertThat()
                 .statusCode(SC_FORBIDDEN)
                 .and()
                 .body("success", equalTo(false));
+        accessToken = response.extract().path("accessToken");
     }
 
     @Test
     @DisplayName("Регистрация нового пользователя без поля name")
     public void checkCreateUserWithoutNameField(){
         UserRequest userRequest = UserRequestGenerator.getRandomUserRequestWithoutNameField();
-        userSteps.create(userRequest)
+        response = userSteps.create(userRequest)
                 .assertThat()
                 .statusCode(SC_FORBIDDEN)
                 .and()
                 .body("success", equalTo(false));
+        accessToken = response.extract().path("accessToken");
     }
 
     @Test
     @DisplayName("Регистрация нового пользователя без поля password")
     public void checkCreateUserWithoutPasswordField(){
         UserRequest userRequest = UserRequestGenerator.getRandomUserRequestWithoutPasswordField();
-        userSteps.create(userRequest)
+        response = userSteps.create(userRequest)
                 .assertThat()
                 .statusCode(SC_FORBIDDEN)
                 .and()
                 .body("success", equalTo(false));
+        accessToken = response.extract().path("accessToken");
     }
 
     @Test
