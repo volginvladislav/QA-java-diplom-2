@@ -48,36 +48,36 @@ public class CreateUserTest {
     @DisplayName("Регистрация нового пользователя без поля email")
     public void checkCreateUserWithoutEmailField(){
         UserRequest userRequest = UserRequestGenerator.getRandomUserRequestWithoutEmailField();
-        response = userSteps.create(userRequest)
-                .assertThat()
+        response = userSteps.create(userRequest);
+        accessToken = response.extract().path("accessToken");
+        response
                 .statusCode(SC_FORBIDDEN)
                 .and()
                 .body("success", equalTo(false));
-        accessToken = response.extract().path("accessToken");
     }
 
     @Test
     @DisplayName("Регистрация нового пользователя без поля name")
     public void checkCreateUserWithoutNameField(){
         UserRequest userRequest = UserRequestGenerator.getRandomUserRequestWithoutNameField();
-        response = userSteps.create(userRequest)
-                .assertThat()
+        response = userSteps.create(userRequest);
+        accessToken = response.extract().path("accessToken");
+        response
                 .statusCode(SC_FORBIDDEN)
                 .and()
                 .body("success", equalTo(false));
-        accessToken = response.extract().path("accessToken");
     }
 
     @Test
     @DisplayName("Регистрация нового пользователя без поля password")
     public void checkCreateUserWithoutPasswordField(){
         UserRequest userRequest = UserRequestGenerator.getRandomUserRequestWithoutPasswordField();
-        response = userSteps.create(userRequest)
-                .assertThat()
+        response = userSteps.create(userRequest);
+        accessToken = response.extract().path("accessToken");
+        response
                 .statusCode(SC_FORBIDDEN)
                 .and()
                 .body("success", equalTo(false));
-        accessToken = response.extract().path("accessToken");
     }
 
     @Test
@@ -96,6 +96,5 @@ public class CreateUserTest {
                 .and()
                 .body("success", equalTo(false));
     }
-
 
 }
